@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile CSS Test</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #533483 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .cosmic-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .cosmic-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: cosmic-twinkle 4s infinite ease-in-out;
+        }
+
+        @keyframes cosmic-twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .cosmic-loop-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cosmic-loop-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.8em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #4facfe, #ff6b9d);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: cosmic-gradient 8s ease infinite;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        @keyframes cosmic-gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .test-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cosmic-perspective-btn {
+            padding: 20px 30px;
+            font-size: 1.1em;
+            font-family: 'Space Mono', monospace;
+            font-weight: bold;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            min-width: 200px;
+            margin: 10px;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+        }
+
+        .cosmic-perspective-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .filter-stat {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 10px;
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        .filter-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8em;
+            color: #ff6b9d;
+            font-weight: bold;
+        }
+
+        .filter-label {
+            color: #b0b0b0;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* MOBILE OPTIMIZATIONS */
+        @media (max-width: 768px) {
+            .cosmic-loop-title {
+                font-size: 2.2em;
+                animation: none;
+                background: #4facfe;
+                -webkit-background-clip: unset;
+                background-clip: unset;
+                -webkit-text-fill-color: unset;
+                color: #4facfe;
+            }
+            
+            .cosmic-perspective-btn {
+                width: 100%;
+                max-width: 300px;
+                transition: none;
+            }
+            
+            .cosmic-perspective-btn:hover {
+                transform: none;
+            }
+            
+            .cosmic-star:nth-child(n+21) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cosmic-star {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-stars" id="starField"></div>
+    
+    <div class="cosmic-loop-container">
+        <h1 class="cosmic-loop-title">MOBILE CSS TEST</h1>
+        
+        <div class="test-section">
+            <h2 style="color: #ff6b9d; text-align: center; margin-bottom: 20px;">🌌 Testing Mobile Optimization</h2>
+            <p style="text-align: center; margin-bottom: 20px;">
+                This tests the optimized CSS with reduced animations and mobile-friendly design.
+                Try resizing your browser window to see mobile breakpoints!
+            </p>
+            
+            <div style="text-align: center;">
+                <button class="cosmic-perspective-btn">Test Button</button>
+                <button class="cosmic-perspective-btn">Another Button</button>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <div class="filter-stat">
+                    <div class="filter-number">40</div>
+                    <div class="filter-label">Stars (vs 200)</div>
+                </div>
+                <div class="filter-stat">
+                    <div class="filter-number">50%</div>
+                    <div class="filter-label">CSS Reduced</div>
+                </div>
+                <div class="filter-stat">
+                    <div class="filter-number">📱</div>
+                    <div class="filter-label">Mobile Ready</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Create 40 stars instead of 200
+        function createStarField() {
+            const starField = document.getElementById('starField');
+            for (let i = 0; i < 40; i++) {
+                const star = document.createElement('div');
+                star.className = 'cosmic-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starField.appendChild(star);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', createStarField);
+    </script>
+</body>
+</html>

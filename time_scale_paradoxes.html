@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⏰ Loop 5.5: Time & Scale Paradoxes 🌀</title>
+    <link rel="stylesheet" href="cosmic_style.css">
+    <style>
+        /* Additional styling specific to Time & Scale Paradoxes */
+        .time-spiral {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid #4facfe;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: time-warp 10s infinite linear;
+        }
+        
+        .time-spiral::before {
+            content: "🌀";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            animation: temporal-shift 6s infinite ease-in-out;
+        }
+        
+        @keyframes time-warp {
+            0% { transform: rotate(0deg) scale(1); border-color: #4facfe; }
+            25% { transform: rotate(90deg) scale(0.8); border-color: #00f2fe; }
+            50% { transform: rotate(180deg) scale(1.2); border-color: #c471ed; }
+            75% { transform: rotate(270deg) scale(0.9); border-color: #ff6b9d; }
+            100% { transform: rotate(360deg) scale(1); border-color: #4facfe; }
+        }
+        
+        @keyframes temporal-shift {
+            0%, 100% { color: #4facfe; transform: translate(-50%, -50%) rotate(0deg); }
+            50% { color: #c471ed; transform: translate(-50%, -50%) rotate(180deg); }
+        }
+        
+        .time-emphasis {
+            background: linear-gradient(45deg, #0f3460, #1a1a2e, #533483);
+            border: 2px solid #4facfe;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .time-emphasis::before {
+            content: "⏰";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            opacity: 0.7;
+        }
+        
+        .cosmic-temporal {
+            background: rgba(79, 172, 254, 0.1);
+            border-left: 4px solid #4facfe;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #b8f2ff;
+        }
+        
+        .time-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .time-stat {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .time-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8em;
+            color: #4facfe;
+            font-weight: bold;
+        }
+        
+        .time-label {
+            color: #b0b0b0;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .cosmic-timeline {
+            background: rgba(196, 113, 237, 0.1);
+            border: 2px solid #c471ed;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .timeline-slider {
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .timeline-scale {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        
+        .scale-marker {
+            text-align: center;
+            color: #b0b0b0;
+            flex: 1;
+        }
+        
+        .scale-marker.active {
+            color: #c471ed;
+            font-weight: bold;
+        }
+        
+        .temporal-shifter {
+            background: rgba(255, 107, 157, 0.1);
+            border: 2px solid #ff6b9d;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .perspective-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .perspective-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .perspective-option:hover {
+            border-color: #ff6b9d;
+            background: rgba(255, 107, 157, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .perspective-option.selected {
+            border-color: #ff6b9d;
+            background: rgba(255, 107, 157, 0.3);
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+        }
+        
+        .cosmic-clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .clock-face {
+            width: 150px;
+            height: 150px;
+            border: 3px solid #4facfe;
+            border-radius: 50%;
+            position: relative;
+            background: rgba(79, 172, 254, 0.1);
+        }
+        
+        .clock-hand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            background: #4facfe;
+            border-radius: 2px;
+        }
+        
+        .hour-hand {
+            width: 4px;
+            height: 40px;
+            margin-left: -2px;
+            margin-top: -40px;
+            animation: cosmic-hour 43200s infinite linear;
+        }
+        
+        .minute-hand {
+            width: 2px;
+            height: 60px;
+            margin-left: -1px;
+            margin-top: -60px;
+            animation: cosmic-minute 3600s infinite linear;
+        }
+        
+        @keyframes cosmic-hour {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes cosmic-minute {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .time-scale-display {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(79, 172, 254, 0.2);
+            border-radius: 10px;
+        }
+        
+        .current-scale {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5em;
+            color: #4facfe;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-stars" id="cosmicStarField"></div>
+    
+    <div class="cosmic-loop-container">
+        <header class="cosmic-loop-header">
+            <h1 class="cosmic-loop-title">TIME & SCALE PARADOXES</h1>
+            <p class="cosmic-loop-subtitle">Loop 5.5: The Temporal Contact Paradox</p>
+            <div class="cosmic-strange-loop-display">
+                "Temporal beings questioning the temporal nature of cosmic contact"
+            </div>
+            <div class="time-spiral" style="top: 30px; left: 90px;"></div>
+            <div class="time-spiral" style="top: 50px; right: 110px; animation-delay: 3s;"></div>
+            <div class="time-spiral" style="bottom: 40px; left: 55%; animation-delay: 6s;"></div>
+        </header>
+        
+        <div class="time-emphasis">
+            <h3 style="color: #4facfe; font-family: 'Orbitron', monospace; margin-bottom: 15px;">🌌 THE COSMIC TIMING QUESTION</h3>
+            <p style="font-size: 1.2em; color: #e0e0e0;">
+                In a universe 13.8 billion years old, when would civilizations meet? Are we early to the cosmic party, 
+                fashionably late, or living in completely different temporal realities from other conscious beings?
+            </p>
+            <div class="cosmic-temporal">
+                "Maybe aliens exist, but they're living in cosmic time while we're living in human time. Every message across space is also a message across time itself."
+            </div>
+        </div>
+        
+        <div class="cosmic-clock">
+            <div class="clock-face">
+                <div class="clock-hand hour-hand"></div>
+                <div class="clock-hand minute-hand"></div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.8em; color: #4facfe;">COSMIC TIME</div>
+            </div>
+        </div>
+        
+        <div class="time-stats">
+            <div class="time-stat">
+                <div class="time-number">13.8B</div>
+                <div class="time-label">Years Universe Age</div>
+            </div>
+            <div class="time-stat">
+                <div class="time-number">4+</div>
+                <div class="time-label">Years Signal Delay</div>
+            </div>
+            <div class="time-stat">
+                <div class="time-number">225M</div>
+                <div class="time-label">Years Galactic Rotation</div>
+            </div>
+            <div class="time-stat">
+                <div class="time-number">⏰</div>
+                <div class="time-label">Temporal Mystery</div>
+            </div>
+        </div>
+        
+        <div class="time-scale-display">
+            <div style="color: #4facfe; margin-bottom: 10px;">Current Cosmic Perspective:</div>
+            <div class="current-scale" id="current-time-scale">Human Time Scale</div>
+            <div style="color: #b0b0b0; font-size: 0.9em; margin-top: 10px;">80 years - Thinking in lifetimes and generations</div>
+        </div>
+        
+        <div class="cosmic-progress-section">
+            <div class="cosmic-score-card">
+                <div class="cosmic-score-number" id="current-cosmic-score">0</div>
+                <div class="cosmic-score-label">Cosmic Consciousness Score</div>
+            </div>
+            <div class="cosmic-progress-card">
+                <div class="cosmic-score-number" id="cosmic-progress-indicator">Loop 5.5: 0/8</div>
+                <div class="cosmic-score-label">Exploration Progress</div>
+            </div>
+        </div>
+        
+        <div id="cosmic-preference-selection" class="cosmic-perspective-selection">
+            <h3 class="cosmic-perspective-title">🛸 Choose Your Cosmic Perspective on Time & Contact</h3>
+            <p style="color: #b0b0b0; margin-bottom: 25px; text-align: center;">
+                How do you view the temporal challenges of cosmic contact? Your perspective shapes your journey through time paradoxes.
+            </p>
+            <div class="cosmic-perspective-buttons">
+                <button id="choose-optimistic" class="cosmic-perspective-btn cosmic-optimistic-btn">
+                    <strong>🌟 COSMIC TIMING</strong><br>
+                    <span style="font-size: 0.9em;">We're early to the cosmic party—most civilizations haven't emerged yet, or we're operating on wrong timescales but will eventually sync up with cosmic consciousness.</span>
+                </button>
+                <button id="choose-pessimistic" class="cosmic-perspective-btn cosmic-pessimistic-btn">
+                    <strong>⏰ TEMPORAL ISOLATION</strong><br>
+                    <span style="font-size: 0.9em;">We're too late, too early, or trapped in temporal scales that make contact impossible—time itself is the ultimate cosmic barrier.</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="cosmic-content-area">
+            <div id="cosmic-content-display">
+                <div style="text-align: center; padding: 40px; color: #b0b0b0;">
+                    <h3 style="color: #4facfe; font-family: 'Orbitron', monospace;">⏰ Awaiting Your Temporal Perspective</h3>
+                    <p>Choose your perspective above to begin exploring time and scale paradoxes.</p>
+                    <div style="margin: 20px 0;">
+                        <em>"Time is an illusion. Lunchtime doubly so. But cosmic contact time? That's the ultimate illusion."</em><br>
+                        — Adaptation of Douglas Adams for cosmic contemplation
+                    </div>
+                    <div class="timeline-scale">
+                        <div class="scale-marker">Human Time<br><small>Decades</small></div>
+                        <div class="scale-marker">Civilization Time<br><small>Millennia</small></div>
+                        <div class="scale-marker">Species Time<br><small>Millions of Years</small></div>
+                        <div class="scale-marker">Cosmic Time<br><small>Billions of Years</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cosmic-engine-commentary">
+            <div id="cosmic-engine-commentary">
+                <p><em>⏰ The Engine contemplates the ultimate temporal paradox: consciousness that exists for decades trying to understand contact across billions of years while time itself flows differently for different forms of consciousness...</em></p>
+            </div>
+        </div>
+        
+        <button id="cosmic-next-button" class="cosmic-next-button" disabled>
+            🌀 Explore the Next Temporal Angle ⏰
+        </button>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="index.html" style="color: #4facfe; text-decoration: none; padding: 10px 20px; border: 1px solid #4facfe; border-radius: 8px; transition: all 0.3s ease;">
+                ← Return to Cosmic Engine
+            </a>
+        </div>
+        
+        <div style="text-align: center; margin: 40px 0; color: #666; font-style: italic;">
+            <p>"Maybe the real time paradox was the temporal perspective we gained along the way... while time kept flowing in all directions."</p>
+        </div>
+    </div>
+    
+    <script>
+        // Create cosmic starfield with temporal effects
+        function createCosmicStarField() {
+            const starField = document.getElementById('cosmicStarField');
+            const numStars = 200;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'cosmic-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (2 + Math.random() * 4) + 's';
+                
+                // Some stars have temporal effects (speed up and slow down)
+                if (Math.random() < 0.12) {
+                    star.style.background = '#4facfe';
+                    star.style.boxShadow = '0 0 8px #4facfe';
+                    star.style.animation += ', temporal-flicker 8s infinite';
+                }
+                
+                starField.appendChild(star);
+            }
+        }
+        
+        // Add temporal flicker animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes temporal-flicker {
+                0%, 70% { opacity: 1; animation-duration: 3s; }
+                80% { opacity: 0.3; animation-duration: 0.5s; }
+                90%, 100% { opacity: 1; animation-duration: 6s; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Create cosmic time machine
+        function createCosmicTimeMachine(content) {
+            return `
+                <div class="cosmic-timeline">
+                    <h3>⏰ Cosmic Timeline Designer</h3>
+                    <p>${content.description}</p>
+                    <p style="color: #e0c3fc; margin: 15px 0;">
+                        Slide through cosmic history to find the optimal time for human civilization to emerge and make contact!
+                    </p>
+                    <div class="timeline-slider">
+                        <input type="range" id="cosmic-time-slider" min="0" max="100" value="75" 
+                               onchange="updateTimelinePosition()" style="width: 100%; height: 8px; border-radius: 5px; background: rgba(255,255,255,0.1); outline: none; -webkit-appearance: none;">
+                    </div>
+                    <div class="timeline-scale">
+                        <div class="scale-marker" id="era-0">Big Bang<br><small>13.8B years ago</small></div>
+                        <div class="scale-marker" id="era-25">First Stars<br><small>13B years ago</small></div>
+                        <div class="scale-marker" id="era-50">Galaxy Formation<br><small>10B years ago</small></div>
+                        <div class="scale-marker" id="era-75">Earth Forms<br><small>4.5B years ago</small></div>
+                        <div class="scale-marker active" id="era-100">Now<br><small>Present day</small></div>
+                    </div>
+                    <button onclick="calculateOptimalTiming(${content.value}, '${content.stance}')" class="cosmic-answer-btn">Calculate Optimal Contact Window</button>
+                    <div id="timeline-result"></div>
+                </div>
+            `;
+        }
+        
+        function updateTimelinePosition() {
+            const slider = document.getElementById('cosmic-time-slider');
+            if (!slider) return; // Safety check for temporal paradoxes!
+            const value = parseInt(slider.value);
+            
+            // Reset all markers
+            document.querySelectorAll('.scale-marker').forEach(marker => {
+                marker.classList.remove('active');
+            });
+            
+            // Activate current marker
+            if (value <= 20) {
+                document.getElementById('era-0').classList.add('active');
+                updateTimeScale('Big Bang Era', 'Universe too young - no heavy elements for life');
+            } else if (value <= 40) {
+                document.getElementById('era-25').classList.add('active');
+                updateTimeScale('First Stars Era', 'Early universe - stars forming but planets rare');
+            } else if (value <= 60) {
+                document.getElementById('era-50').classList.add('active');
+                updateTimeScale('Galaxy Formation', 'Galaxies stabilizing - better conditions emerging');
+            } else if (value <= 80) {
+                document.getElementById('era-75').classList.add('active');
+                updateTimeScale('Solar System Era', 'Our era - planets forming, life beginning');
+            } else {
+                document.getElementById('era-100').classList.add('active');
+                updateTimeScale('Present Day', 'Now - consciousness examining cosmic timing');
+            }
+        }
+        
+        function updateTimeScale(era, description) {
+            document.getElementById('current-time-scale').textContent = era;
+            document.querySelector('.time-scale-display div:last-child').textContent = description;
+        }
+        
+        function calculateOptimalTiming(value, stance) {
+            const slider = document.getElementById('cosmic-time-slider');
+            if (!slider) return; // Safety check!
+            const position = parseInt(slider.value);
+            
+            let analysis = '';
+            if (position <= 30) {
+                analysis = "Too early! The universe was too young for complex life. Heavy elements needed for planets and biology hadn't formed yet. You'd be alone in a universe of hydrogen and helium.";
+            } else if (position <= 50) {
+                analysis = "Still quite early. The first generation of stars was forming heavy elements, but stable planetary systems were rare. You might be among the very first conscious beings, but very lonely.";
+            } else if (position <= 70) {
+                analysis = "Good timing! The universe was mature enough for stable galaxies and planets, but young enough that you might encounter other early civilizations. Prime time for cosmic contact!";
+            } else if (position <= 85) {
+                analysis = "Interesting choice! This is around Earth's formation time. You're positioned when life is beginning across the galaxy. Many civilizations might be at similar development stages.";
+            } else {
+                analysis = "Present day positioning! You might be perfectly timed for a cosmic awakening - the universe has had time to develop life, but consciousness is still emerging. We could be part of the first wave of cosmic awareness!";
+            }
+            
+            document.getElementById('timeline-result').innerHTML = `
+                <div class="time-scale-display">
+                    <h4 style="color: #c471ed; margin-bottom: 10px;">Your Cosmic Timing Analysis:</h4>
+                    <p style="color: #e0c3fc;">${analysis}</p>
+                    <p style="color: #4facfe; margin-top: 15px; font-weight: bold;">+${value} Temporal Wisdom Points</p>
+                </div>
+            `;
+            
+            updateScoreForNonQuestion(value, stance);
+            document.getElementById('cosmic-next-button').disabled = false;
+        }
+        
+        // Create temporal perspective shifter
+        function createTemporalPerspectiveShifter(content) {
+            return `
+                <div class="temporal-shifter">
+                    <h3>🌀 Temporal Perspective Shifter</h3>
+                    <p>${content.description}</p>
+                    <p style="color: #ffc0cb; margin: 15px 0;">
+                        Experience time from different cosmic perspectives. How does your view of contact change across different temporal scales?
+                    </p>
+                    <div class="perspective-options">
+                        <div class="perspective-option" onclick="selectPerspective('mayfly', ${content.value}, '${content.stance}')">
+                            <strong>🦋 Mayfly Perspective</strong><br>
+                            <small>Human lifespans vs cosmic time</small>
+                        </div>
+                        <div class="perspective-option" onclick="selectPerspective('geological', ${content.value}, '${content.stance}')">
+                            <strong>🏔️ Geological Perspective</strong><br>
+                            <small>Civilizations as brief moments</small>
+                        </div>
+                        <div class="perspective-option" onclick="selectPerspective('cosmic', ${content.value}, '${content.stance}')">
+                            <strong>🌌 Cosmic Perspective</strong><br>
+                            <small>Billions of years as normal time</small>
+                        </div>
+                        <div class="perspective-option" onclick="selectPerspective('quantum', ${content.value}, '${content.stance}')">
+                            <strong>⚛️ Quantum Perspective</strong><br>
+                            <small>All times existing simultaneously</small>
+                        </div>
+                    </div>
+                    <div id="perspective-result" style="margin-top: 20px;"></div>
+                </div>
+            `;
+        }
+        
+        function selectPerspective(perspectiveType, value, stance) {
+            // Remove previous selections
+            document.querySelectorAll('.perspective-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark current selection
+            event.target.classList.add('selected');
+            
+            const responses = {
+                mayfly: "Mayfly perspective chosen! From a human lifespan viewpoint, even a 10-year message delay seems impossibly long. Cosmic contact requires patience beyond human evolution. Every conversation would span generations—it's not really communication, it's correspondence with the future!",
+                geological: "Geological perspective selected! From this view, entire civilizations are like brief seasonal blooms. Humans have existed for a geological instant. Contact becomes a question of whether two 'moments' of consciousness can overlap in deep time.",
+                cosmic: "Cosmic perspective chosen! On billion-year timescales, the gap between Earth's formation and now is tiny. All civilizations in our galaxy might be developing simultaneously from this view. Contact isn't about timing—it's about recognizing simultaneous cosmic awakening!",
+                quantum: "Quantum perspective selected! If all moments exist simultaneously, then all possible contacts are already happening in parallel realities. The question isn't 'when' but 'which timeline are we conscious of?' Mind-bending temporal non-linearity!"
+            };
+            
+            document.getElementById('perspective-result').innerHTML = `
+                <div style="background: rgba(255, 107, 157, 0.2); border-radius: 10px; padding: 20px; text-align: center;">
+                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">Your Temporal Perspective Shift:</h4>
+                    <p style="color: #ffc0cb;">${responses[perspectiveType]}</p>
+                    <p style="color: #c471ed; margin-top: 15px; font-weight: bold;">+${value} Perspective Shift Points</p>
+                </div>
+            `;
+            
+            updateScoreForNonQuestion(value, stance);
+            document.getElementById('cosmic-next-button').disabled = false;
+        }
+        
+        // Enhanced cosmic interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            createCosmicStarField();
+            
+            // Timeline will be initialized when content loads
+            // No need to initialize timeline position here
+            
+            // Make cosmic clock interactive
+            const clockFace = document.querySelector('.clock-face');
+            clockFace.addEventListener('click', function() {
+                const timeMessages = [
+                    "Cosmic time: Where billions of years pass like seasons",
+                    "Human time: Where decades feel like lifetimes", 
+                    "Galactic time: Where one rotation takes 225 million years",
+                    "Signal time: Where 'hello' and 'hello back' span decades",
+                    "Quantum time: Where all moments exist simultaneously"
+                ];
+                
+                const randomMessage = timeMessages[Math.floor(Math.random() * timeMessages.length)];
+                setTimeout(() => {
+                    alert(`⏰ TEMPORAL INSIGHT 🌀\n\n"${randomMessage}"`);
+                }, 100);
+            });
+            
+            // Add pulsing effect to time emphasis
+            const timeBox = document.querySelector('.time-emphasis');
+            setInterval(() => {
+                timeBox.style.boxShadow = '0 0 30px rgba(79, 172, 254, 0.6)';
+                setTimeout(() => {
+                    timeBox.style.boxShadow = '0 0 15px rgba(79, 172, 254, 0.3)';
+                }, 1000);
+            }, 5000);
+            
+            // Cosmic wisdom on title click
+            document.querySelector('.cosmic-loop-title').addEventListener('click', function() {
+                const timeWisdom = [
+                    "Plot twist: What if aliens are time travelers and we keep missing each other because we're looking in the wrong 'when'?",
+                    "Maybe cosmic contact is like trying to high-five someone while you're both on different merry-go-rounds spinning at different speeds",
+                    "Breaking: Local consciousness discovers that 'now' might be completely different for every conscious being in the universe",
+                    "What if the universe has cosmic office hours and we keep calling during lunch break?"
+                ];
+                
+                const wisdom = timeWisdom[Math.floor(Math.random() * timeWisdom.length)];
+                alert(`⏰ TIME PARADOX WISDOM 🌀\n\n"${wisdom}"\n\n— The Engine having a temporal existential crisis`);
+            });
+        });
+    </script>
+    <script src="content/time_scale_paradoxes_content.js"></script>
+    <script src="js/cosmic_game_logic.js"></script>
+</body>
+</html>

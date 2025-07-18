@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 Loop 5.1: The Great Silence 📡</title>
+    <link rel="stylesheet" href="cosmic_style.css">
+    <style>
+        /* Additional styling specific to The Great Silence */
+        .radio-wave-animation {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #4facfe;
+            border-radius: 50%;
+            opacity: 0;
+            animation: radio-pulse 4s infinite ease-out;
+        }
+        
+        @keyframes radio-pulse {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        .silence-emphasis {
+            background: linear-gradient(45deg, #000000, #1a1a2e);
+            border: 2px solid #ff6b9d;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .silence-emphasis::before {
+            content: "📡";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            opacity: 0.7;
+        }
+        
+        .cosmic-listening {
+            background: rgba(0, 242, 254, 0.1);
+            border-left: 4px solid #00f2fe;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #b8f2ff;
+        }
+        
+        .seti-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .seti-stat {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .seti-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8em;
+            color: #4facfe;
+            font-weight: bold;
+        }
+        
+        .seti-label {
+            color: #b0b0b0;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .communication-designer {
+            background: rgba(196, 113, 237, 0.1);
+            border: 2px solid #c471ed;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .message-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .message-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .message-option:hover {
+            border-color: #c471ed;
+            background: rgba(196, 113, 237, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .message-option.selected {
+            border-color: #c471ed;
+            background: rgba(196, 113, 237, 0.3);
+            box-shadow: 0 0 15px rgba(196, 113, 237, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-stars" id="cosmicStarField"></div>
+    
+    <div class="cosmic-loop-container">
+        <header class="cosmic-loop-header">
+            <h1 class="cosmic-loop-title">THE GREAT SILENCE</h1>
+            <p class="cosmic-loop-subtitle">Loop 5.1: The Cosmic Communication Paradox</p>
+            <div class="cosmic-strange-loop-display">
+                "Beings asking why they can't hear other beings asking the same question"
+            </div>
+            <div class="radio-wave-animation" style="top: 20px; left: 50px;"></div>
+            <div class="radio-wave-animation" style="top: 60px; right: 80px; animation-delay: 1s;"></div>
+            <div class="radio-wave-animation" style="bottom: 40px; left: 30%; animation-delay: 2s;"></div>
+        </header>
+        
+        <div class="silence-emphasis">
+            <h3 style="color: #ff6b9d; font-family: 'Orbitron', monospace; margin-bottom: 15px;">🌌 THE COSMIC QUESTION</h3>
+            <p style="font-size: 1.2em; color: #e0e0e0;">
+                In a galaxy of 400 billion stars, with potentially trillions of planets, why is space so eerily quiet? 
+                Where are all the radio signals, the cosmic conversations, the galactic internet chatter?
+            </p>
+            <div class="cosmic-listening">
+                "We've been listening to the cosmos for decades... and the universe seems to be holding its breath."
+            </div>
+        </div>
+        
+        <div class="seti-stats">
+            <div class="seti-stat">
+                <div class="seti-number">~60</div>
+                <div class="seti-label">Years of Serious Listening</div>
+            </div>
+            <div class="seti-stat">
+                <div class="seti-number">0.0001%</div>
+                <div class="seti-label">Galaxy Searched</div>
+            </div>
+            <div class="seti-stat">
+                <div class="seti-number">1</div>
+                <div class="seti-label">Wow! Signal</div>
+            </div>
+            <div class="seti-stat">
+                <div class="seti-number">???</div>
+                <div class="seti-label">Alien Civilizations</div>
+            </div>
+        </div>
+        
+        <div class="cosmic-progress-section">
+            <div class="cosmic-score-card">
+                <div class="cosmic-score-number" id="current-cosmic-score">0</div>
+                <div class="cosmic-score-label">Cosmic Consciousness Score</div>
+            </div>
+            <div class="cosmic-progress-card">
+                <div class="cosmic-score-number" id="cosmic-progress-indicator">Loop 5.1: 0/8</div>
+                <div class="cosmic-score-label">Exploration Progress</div>
+            </div>
+        </div>
+        
+        <div id="cosmic-preference-selection" class="cosmic-perspective-selection">
+            <h3 class="cosmic-perspective-title">🛸 Choose Your Cosmic Perspective on The Great Silence</h3>
+            <p style="color: #b0b0b0; margin-bottom: 25px; text-align: center;">
+                How do you interpret the cosmic radio silence? Your perspective will guide your journey through this paradox.
+            </p>
+            <div class="cosmic-perspective-buttons">
+                <button id="choose-optimistic" class="cosmic-perspective-btn cosmic-optimistic-btn">
+                    <strong>🌟 COSMIC CONNECTIVITY</strong><br>
+                    <span style="font-size: 0.9em;">The silence is temporary - we're either not listening right, not looking in the right places, or haven't waited long enough. The universe is full of chatter we just haven't tuned into yet.</span>
+                </button>
+                <button id="choose-pessimistic" class="cosmic-perspective-btn cosmic-pessimistic-btn">
+                    <strong>🌑 COSMIC SOLITUDE</strong><br>
+                    <span style="font-size: 0.9em;">The Great Silence reflects a deeper truth - consciousness is rare, fragile, or the universe is fundamentally hostile to complex communication across vast distances.</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="cosmic-content-area">
+            <div id="cosmic-content-display">
+                <div style="text-align: center; padding: 40px; color: #b0b0b0;">
+                    <h3 style="color: #4facfe; font-family: 'Orbitron', monospace;">🛸 Awaiting Your Cosmic Perspective</h3>
+                    <p>Choose your perspective above to begin exploring the Great Silence paradox.</p>
+                    <div style="margin: 20px 0;">
+                        <em>"In the vastness of space and the immensity of time, it is my hope that we are not alone."</em><br>
+                        — Carl Sagan
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cosmic-engine-commentary">
+            <div id="cosmic-engine-commentary">
+                <p><em>🛸 The Engine prepares to contemplate why a universe that should be screaming with consciousness is instead whispering cosmic secrets we can't yet decode...</em></p>
+            </div>
+        </div>
+        
+        <button id="cosmic-next-button" class="cosmic-next-button" disabled>
+            🌌 Explore the Next Cosmic Angle 📡
+        </button>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="index.html" style="color: #4facfe; text-decoration: none; padding: 10px 20px; border: 1px solid #4facfe; border-radius: 8px; transition: all 0.3s ease;">
+                ← Return to Cosmic Engine
+            </a>
+        </div>
+        
+        <div style="text-align: center; margin: 40px 0; color: #666; font-style: italic;">
+            <p>"Maybe we're not hearing alien signals because they're using the cosmic equivalent of fiber optic cables while we're still listening for smoke signals..."</p>
+        </div>
+    </div>
+    
+    <script src="js/cosmic_game_logic.js"></script>
+    <script>
+        // Create cosmic starfield specific to Great Silence
+        function createCosmicStarField() {
+            const starField = document.getElementById('cosmicStarField');
+            const numStars = 200;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'cosmic-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (2 + Math.random() * 4) + 's';
+                
+                // Some stars pulse like radio signals
+                if (Math.random() < 0.1) {
+                    star.style.background = '#4facfe';
+                    star.style.boxShadow = '0 0 6px #4facfe';
+                }
+                
+                starField.appendChild(star);
+            }
+        }
+        
+        // Create communication experiment functionality
+        function createCommunicationExperiment(content) {
+            return `
+                <div class="communication-designer">
+                    <h3>📡 Cosmic Communication Challenge</h3>
+                    <p>${content.description}</p>
+                    <p style="color: #e0c3fc; margin: 15px 0;">
+                        You have one chance to send a message to aliens. What do you include in humanity's first official galactic transmission?
+                    </p>
+                    <div class="message-options">
+                        <div class="message-option" onclick="selectMessage('math', ${content.value}, '${content.stance}')">
+                            <strong>🔢 Mathematics & Science</strong><br>
+                            <small>Universal constants, prime numbers, periodic table</small>
+                        </div>
+                        <div class="message-option" onclick="selectMessage('culture', ${content.value}, '${content.stance}')">
+                            <strong>🎨 Art & Culture</strong><br>
+                            <small>Music, art, literature, human creativity</small>
+                        </div>
+                        <div class="message-option" onclick="selectMessage('location', ${content.value}, '${content.stance}')">
+                            <strong>🌍 Earth's Location</strong><br>
+                            <small>Star maps, solar system data, how to find us</small>
+                        </div>
+                        <div class="message-option" onclick="selectMessage('greeting', ${content.value}, '${content.stance}')">
+                            <strong>👋 Simple Greeting</strong><br>
+                            <small>Hello, peace, friendship, basic communication</small>
+                        </div>
+                    </div>
+                    <div id="message-result" style="margin-top: 20px;"></div>
+                </div>
+            `;
+        }
+        
+        function selectMessage(messageType, value, stance) {
+            // Remove previous selections
+            document.querySelectorAll('.message-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark current selection
+            event.target.classList.add('selected');
+            
+            const responses = {
+                math: "Mathematical approach chosen! You believe logic and universal constants will bridge the gap between minds. Aliens receiving this would know we understand cosmic principles, but would they understand our specific mathematical notation?",
+                culture: "Cultural approach chosen! You want to show aliens our creativity and emotions. This reveals the soul of humanity, but would beings who evolved differently even have concepts like 'music' or 'beauty'?",
+                location: "Location approach chosen! You're inviting them to visit or contact us directly. Bold and trusting! But also potentially dangerous if they have intentions we can't predict.",
+                greeting: "Diplomatic approach chosen! Simple, peaceful, and non-threatening. This reduces risk but might also seem primitive to advanced civilizations. Sometimes simple is most profound."
+            };
+            
+            document.getElementById('message-result').innerHTML = `
+                <div style="background: rgba(196, 113, 237, 0.2); border-radius: 10px; padding: 20px; text-align: center;">
+                    <h4 style="color: #c471ed; margin-bottom: 10px;">Your Cosmic Message Decision:</h4>
+                    <p style="color: #e0c3fc;">${responses[messageType]}</p>
+                    <p style="color: #4facfe; margin-top: 15px; font-weight: bold;">+${value} Cosmic Communication Points</p>
+                </div>
+            `;
+            
+            updateScoreForNonQuestion(value, stance);
+            nextButton.disabled = false;
+        }
+        
+        // Enhanced cosmic interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            createCosmicStarField();
+            
+            // Add pulsing effect to silence emphasis
+            const silenceBox = document.querySelector('.silence-emphasis');
+            setInterval(() => {
+                silenceBox.style.boxShadow = '0 0 30px rgba(255, 107, 157, 0.5)';
+                setTimeout(() => {
+                    silenceBox.style.boxShadow = '0 0 15px rgba(255, 107, 157, 0.2)';
+                }, 1000);
+            }, 3000);
+            
+            // Cosmic wisdom on title click
+            document.querySelector('.cosmic-loop-title').addEventListener('click', function() {
+                const silenceWisdom = [
+                    "Maybe aliens are also refreshing their cosmic Twitter feeds, wondering why nobody likes their posts",
+                    "The universe's biggest mystery: Is everyone just really bad at cosmic small talk?",
+                    "What if every civilization discovers radio, gets excited about contact, then immediately discovers TikTok and never looks up again?",
+                    "Plot twist: Aliens invented cosmic WhatsApp and we're still using telegraph"
+                ];
+                
+                const wisdom = silenceWisdom[Math.floor(Math.random() * silenceWisdom.length)];
+                alert(`📡 GREAT SILENCE WISDOM 📡\n\n"${wisdom}"\n\n— The Engine having cosmic communication anxiety`);
+            });
+        });
+      <script src="content/great_silence_content.js"></script> 
+       <script src="js/cosmic_game_logic.js"></script>
+ </body>
+</html>

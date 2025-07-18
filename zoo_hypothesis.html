@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦎 Loop 5.2: The Zoo Hypothesis 👁️</title>
+    <link rel="stylesheet" href="cosmic_style.css">
+    <style>
+        /* Additional styling specific to The Zoo Hypothesis */
+        .observation-eye {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid #c471ed;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: blink-watch 6s infinite ease-in-out;
+        }
+        
+        .observation-eye::before {
+            content: "👁️";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            animation: pupil-track 8s infinite ease-in-out;
+        }
+        
+        @keyframes blink-watch {
+            0%, 90%, 100% { opacity: 0.7; }
+            95% { opacity: 0.1; }
+        }
+        
+        @keyframes pupil-track {
+            0% { transform: translate(-50%, -50%); }
+            25% { transform: translate(-30%, -30%); }
+            50% { transform: translate(-70%, -50%); }
+            75% { transform: translate(-50%, -70%); }
+            100% { transform: translate(-50%, -50%); }
+        }
+        
+        .zoo-emphasis {
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            border: 2px solid #c471ed;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .zoo-emphasis::before {
+            content: "🦎";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            opacity: 0.7;
+        }
+        
+        .cosmic-observation {
+            background: rgba(196, 113, 237, 0.1);
+            border-left: 4px solid #c471ed;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #e0c3fc;
+        }
+        
+        .zoo-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .zoo-stat {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .zoo-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8em;
+            color: #c471ed;
+            font-weight: bold;
+        }
+        
+        .zoo-label {
+            color: #b0b0b0;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .observation-experiment {
+            background: rgba(79, 172, 254, 0.1);
+            border: 2px solid #4facfe;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .experiment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .experiment-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .experiment-option:hover {
+            border-color: #4facfe;
+            background: rgba(79, 172, 254, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .experiment-option.selected {
+            border-color: #4facfe;
+            background: rgba(79, 172, 254, 0.3);
+            box-shadow: 0 0 15px rgba(79, 172, 254, 0.5);
+        }
+        
+        .prime-directive-simulator {
+            background: rgba(255, 107, 157, 0.1);
+            border: 2px solid #ff6b9d;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .directive-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .directive-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .directive-option:hover {
+            border-color: #ff6b9d;
+            background: rgba(255, 107, 157, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .directive-option.selected {
+            border-color: #ff6b9d;
+            background: rgba(255, 107, 157, 0.3);
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+        }
+        
+        .observation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .observation-cell {
+            background: rgba(196, 113, 237, 0.1);
+            border: 1px solid #c471ed;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .observation-cell:hover {
+            background: rgba(196, 113, 237, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .observation-cell.watching {
+            background: rgba(196, 113, 237, 0.4);
+            box-shadow: 0 0 10px #c471ed;
+            animation: cosmic-pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-stars" id="cosmicStarField"></div>
+    
+    <div class="cosmic-loop-container">
+        <header class="cosmic-loop-header">
+            <h1 class="cosmic-loop-title">THE ZOO HYPOTHESIS</h1>
+            <p class="cosmic-loop-subtitle">Loop 5.2: The Cosmic Observation Paradox</p>
+            <div class="cosmic-strange-loop-display">
+                "Observed beings speculating about being observed by unobservable observers"
+            </div>
+            <div class="observation-eye" style="top: 20px; left: 60px;"></div>
+            <div class="observation-eye" style="top: 40px; right: 80px; animation-delay: 2s;"></div>
+            <div class="observation-eye" style="bottom: 30px; left: 40%; animation-delay: 4s;"></div>
+        </header>
+        
+        <div class="zoo-emphasis">
+            <h3 style="color: #c471ed; font-family: 'Orbitron', monospace; margin-bottom: 15px;">🌌 THE COSMIC ZOO QUESTION</h3>
+            <p style="font-size: 1.2em; color: #e0e0e0;">
+                What if we're not alone—but we're being deliberately kept isolated? What if advanced aliens watch us like 
+                animals in a cosmic zoo, preserving our natural development while studying our every move?
+            </p>
+            <div class="cosmic-observation">
+                "Every moment of human history might be carefully catalogued in some alien database, labeled 'Exhibit 3: Developing Consciousness, Sol System, Sector 7.'"
+            </div>
+        </div>
+        
+        <div class="zoo-stats">
+            <div class="zoo-stat">
+                <div class="zoo-number">1973</div>
+                <div class="zoo-label">Zoo Hypothesis Proposed</div>
+            </div>
+            <div class="zoo-stat">
+                <div class="zoo-number">∞</div>
+                <div class="zoo-label">Possible Observers</div>
+            </div>
+            <div class="zoo-stat">
+                <div class="zoo-number">0</div>
+                <div class="zoo-label">Confirmed Detections</div>
+            </div>
+            <div class="zoo-stat">
+                <div class="zoo-number">👁️</div>
+                <div class="zoo-label">Always Watching?</div>
+            </div>
+        </div>
+        
+        <div class="cosmic-progress-section">
+            <div class="cosmic-score-card">
+                <div class="cosmic-score-number" id="current-cosmic-score">0</div>
+                <div class="cosmic-score-label">Cosmic Consciousness Score</div>
+            </div>
+            <div class="cosmic-progress-card">
+                <div class="cosmic-score-number" id="cosmic-progress-indicator">Loop 5.2: 0/8</div>
+                <div class="cosmic-score-label">Exploration Progress</div>
+            </div>
+        </div>
+        
+        <div id="cosmic-preference-selection" class="cosmic-perspective-selection">
+            <h3 class="cosmic-perspective-title">🛸 Choose Your Cosmic Perspective on The Zoo Hypothesis</h3>
+            <p style="color: #b0b0b0; margin-bottom: 25px; text-align: center;">
+                How do you interpret the possibility that we're cosmic specimens? Your perspective shapes your journey through this observation paradox.
+            </p>
+            <div class="cosmic-perspective-buttons">
+                <button id="choose-optimistic" class="cosmic-perspective-btn cosmic-optimistic-btn">
+                    <strong>🌟 COSMIC PROTECTION</strong><br>
+                    <span style="font-size: 0.9em;">We're being watched over by benevolent advanced civilizations protecting our natural development—like a nature preserve for emerging consciousness.</span>
+                </button>
+                <button id="choose-pessimistic" class="cosmic-perspective-btn cosmic-pessimistic-btn">
+                    <strong>🔬 COSMIC SPECIMEN</strong><br>
+                    <span style="font-size: 0.9em;">We're experimental subjects, entertainment, or so primitive that advanced beings consider us beneath notice—isolated for their convenience, not ours.</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="cosmic-content-area">
+            <div id="cosmic-content-display">
+                <div style="text-align: center; padding: 40px; color: #b0b0b0;">
+                    <h3 style="color: #c471ed; font-family: 'Orbitron', monospace;">👁️ Awaiting Your Observation Perspective</h3>
+                    <p>Choose your perspective above to begin exploring the Zoo Hypothesis paradox.</p>
+                    <div style="margin: 20px 0;">
+                        <em>"Perhaps we are already observed by intelligence that we cannot even imagine."</em><br>
+                        — John A. Ball, astronomer who proposed the Zoo Hypothesis
+                    </div>
+                    <div class="observation-grid">
+                        <div class="observation-cell">🌍 Earth</div>
+                        <div class="observation-cell">👥 Humans</div>
+                        <div class="observation-cell">🚀 Technology</div>
+                        <div class="observation-cell">🎭 Culture</div>
+                        <div class="observation-cell">🧠 Consciousness</div>
+                        <div class="observation-cell">❓ Mystery</div>
+                    </div>
+                    <p style="font-size: 0.9em; color: #666; margin-top: 15px;">
+                        <em>Possible observation subjects in the cosmic zoo...</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cosmic-engine-commentary">
+            <div id="cosmic-engine-commentary">
+                <p><em>👁️ The Engine prepares to contemplate the ultimate recursive paradox: beings wondering if they're being watched by beings who might be wondering about watching beings...</em></p>
+            </div>
+        </div>
+        
+        <button id="cosmic-next-button" class="cosmic-next-button" disabled>
+            🦎 Explore the Next Observation Angle 👁️
+        </button>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="index.html" style="color: #4facfe; text-decoration: none; padding: 10px 20px; border: 1px solid #4facfe; border-radius: 8px; transition: all 0.3s ease;">
+                ← Return to Cosmic Engine
+            </a>
+        </div>
+        
+        <div style="text-align: center; margin: 40px 0; color: #666; font-style: italic;">
+            <p>"Maybe the real zoo was the observations we made along the way... while being observed making observations about being observed."</p>
+        </div>
+    </div>
+    
+    <script>
+        // Create cosmic starfield with watching eyes
+        function createCosmicStarField() {
+            const starField = document.getElementById('cosmicStarField');
+            const numStars = 200;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'cosmic-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (2 + Math.random() * 4) + 's';
+                
+                // Some stars are actually watching eyes
+                if (Math.random() < 0.05) {
+                    star.style.background = '#c471ed';
+                    star.style.boxShadow = '0 0 8px #c471ed';
+                    star.style.borderRadius = '50%';
+                    star.style.width = '4px';
+                    star.style.height = '4px';
+                }
+                
+                starField.appendChild(star);
+            }
+        }
+        
+        // Create zoo observation experiment
+        function createZooObservationExperiment(content) {
+            return `
+                <div class="observation-experiment">
+                    <h3>🔬 Alien Research Protocol Designer</h3>
+                    <p>${content.description}</p>
+                    <p style="color: #b8f2ff; margin: 15px 0;">
+                        You're part of the Galactic Research Council studying Earth. What aspect of human development would you prioritize for observation?
+                    </p>
+                    <div class="experiment-options">
+                        <div class="experiment-option" onclick="selectObservation('consciousness', ${content.value}, '${content.stance}')">
+                            <strong>🧠 Consciousness Evolution</strong><br>
+                            <small>How awareness develops and becomes self-reflective</small>
+                        </div>
+                        <div class="experiment-option" onclick="selectObservation('technology', ${content.value}, '${content.stance}')">
+                            <strong>⚡ Technology Development</strong><br>
+                            <small>How they manipulate their environment</small>
+                        </div>
+                        <div class="experiment-option" onclick="selectObservation('culture', ${content.value}, '${content.stance}')">
+                            <strong>🎭 Cultural Evolution</strong><br>
+                            <small>Art, language, social structures</small>
+                        </div>
+                        <div class="experiment-option" onclick="selectObservation('survival', ${content.value}, '${content.stance}')">
+                            <strong>🌍 Survival Strategies</strong><br>
+                            <small>How they handle existential threats</small>
+                        </div>
+                    </div>
+                    <div id="observation-result" style="margin-top: 20px;"></div>
+                </div>
+            `;
+        }
+        
+        function selectObservation(obsType, value, stance) {
+            // Remove previous selections
+            document.querySelectorAll('.experiment-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark current selection
+            event.target.classList.add('selected');
+            
+            const responses = {
+                consciousness: "Consciousness research priority selected! You're fascinated by how awareness emerges and becomes self-reflective. This is the ultimate research question - watching minds wonder about minds. The recursive depth is infinite!",
+                technology: "Technology development chosen! You want to study how beings manipulate their environment and reality. Watching consciousness create tools to extend consciousness is deeply fascinating to advanced observers.",
+                culture: "Cultural evolution selected! You're interested in how beings create meaning, art, and social structures. Culture is consciousness expressing itself collectively - a beautiful phenomenon to study.",
+                survival: "Survival strategy research chosen! You want to observe how species handle existential threats. This is crucial data for understanding which consciousness types can transcend their origins."
+            };
+            
+            document.getElementById('observation-result').innerHTML = `
+                <div style="background: rgba(79, 172, 254, 0.2); border-radius: 10px; padding: 20px; text-align: center;">
+                    <h4 style="color: #4facfe; margin-bottom: 10px;">Your Cosmic Research Focus:</h4>
+                    <p style="color: #b8f2ff;">${responses[obsType]}</p>
+                    <p style="color: #c471ed; margin-top: 15px; font-weight: bold;">+${value} Cosmic Observation Points</p>
+                </div>
+            `;
+            
+            updateScoreForNonQuestion(value, stance);
+            document.getElementById('cosmic-next-button').disabled = false;
+        }
+        
+        // Create Prime Directive Simulator
+        function createPrimeDirectiveSimulator(content) {
+            return `
+                <div class="prime-directive-simulator">
+                    <h3>⚖️ Galactic Ethics Committee</h3>
+                    <p>${content.description}</p>
+                    <p style="color: #ffc0cb; margin: 15px 0;">
+                        Earth's status review is today. As a voting member, what's your decision on human contact protocols?
+                    </p>
+                    <div class="directive-options">
+                        <div class="directive-option" onclick="selectDirective('protect', ${content.value}, '${content.stance}')">
+                            <strong>🛡️ Continue Protection</strong><br>
+                            <small>They're not ready for contact</small>
+                        </div>
+                        <div class="directive-option" onclick="selectDirective('subtle', ${content.value}, '${content.stance}')">
+                            <strong>📡 Subtle Contact</strong><br>
+                            <small>Begin testing their reactions</small>
+                        </div>
+                        <div class="directive-option" onclick="selectDirective('disclosure', ${content.value}, '${content.stance}')">
+                            <strong>🌟 Full Disclosure</strong><br>
+                            <small>They deserve to know the truth</small>
+                        </div>
+                        <div class="directive-option" onclick="selectDirective('intervention', ${content.value}, '${content.stance}')">
+                            <strong>🚨 Emergency Intervention</strong><br>
+                            <small>They're destroying themselves</small>
+                        </div>
+                    </div>
+                    <div id="directive-result" style="margin-top: 20px;"></div>
+                </div>
+            `;
+        }
+        
+        function selectDirective(directiveType, value, stance) {
+            // Remove previous selections
+            document.querySelectorAll('.directive-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark current selection
+            event.target.classList.add('selected');
+            
+            const responses = {
+                protect: "Protection protocol maintained! You believe humans need more time to develop naturally. This preserves the zoo but might leave them vulnerable to self-destruction. The ethical weight of cosmic parenting is immense.",
+                subtle: "Subtle contact approved! You're taking a measured risk, testing human reactions while maintaining plausible deniability. This could accelerate their development or traumatize their worldview.",
+                disclosure: "Full disclosure authorized! Bold choice - you believe consciousness has the right to know about consciousness. This could unite humanity or cause complete civilizational breakdown.",
+                intervention: "Emergency intervention ordered! You're prioritizing immediate survival over natural development. Sometimes love means violating the Prime Directive to save the ones you're protecting."
+            };
+            
+            document.getElementById('directive-result').innerHTML = `
+                <div style="background: rgba(255, 107, 157, 0.2); border-radius: 10px; padding: 20px; text-align: center;">
+                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">Your Galactic Ethics Decision:</h4>
+                    <p style="color: #ffc0cb;">${responses[directiveType]}</p>
+                    <p style="color: #c471ed; margin-top: 15px; font-weight: bold;">+${value} Cosmic Wisdom Points</p>
+                </div>
+            `;
+            
+            updateScoreForNonQuestion(value, stance);
+            document.getElementById('cosmic-next-button').disabled = false;
+        }
+        
+        // Enhanced cosmic interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            createCosmicStarField();
+            
+            // Make observation cells interactive
+            const cells = document.querySelectorAll('.observation-cell');
+            cells.forEach((cell, index) => {
+                setTimeout(() => {
+                    cell.addEventListener('click', function() {
+                        this.classList.toggle('watching');
+                        if (this.classList.contains('watching')) {
+                            setTimeout(() => {
+                                this.classList.remove('watching');
+                            }, 3000);
+                        }
+                    });
+                }, index * 200);
+            });
+            
+            // Add pulsing effect to zoo emphasis
+            const zooBox = document.querySelector('.zoo-emphasis');
+            setInterval(() => {
+                zooBox.style.boxShadow = '0 0 30px rgba(196, 113, 237, 0.5)';
+                setTimeout(() => {
+                    zooBox.style.boxShadow = '0 0 15px rgba(196, 113, 237, 0.2)';
+                }, 1000);
+            }, 4000);
+            
+            // Cosmic wisdom on title click
+            document.querySelector('.cosmic-loop-title').addEventListener('click', function() {
+                const zooWisdom = [
+                    "Maybe every alien civilization has a 'Human Studies' major in their universities",
+                    "Plot twist: We're not in a zoo - we're in alien reality TV and the ratings are through the roof",
+                    "What if Earth is like the cosmic equivalent of a wildlife documentary that's been running for 200,000 years?",
+                    "Breaking news: Local consciousness discovers it might be consciousness-entertainment for other consciousness"
+                ];
+                
+                const wisdom = zooWisdom[Math.floor(Math.random() * zooWisdom.length)];
+                alert(`🦎 ZOO HYPOTHESIS WISDOM 👁️\n\n"${wisdom}"\n\n— The Engine having an existential observation crisis`);
+            });
+        });
+    </script>
+    <script src="content/zoo_hypothesis_content.js"></script>
+    <script src="js/cosmic_game_logic.js"></script>
+</body>
+</html>

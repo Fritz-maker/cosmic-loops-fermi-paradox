@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Loop 5.3: The Great Filter 🌋</title>
+    <link rel="stylesheet" href="cosmic_style.css">
+    <style>
+        /* Additional styling specific to The Great Filter */
+        .extinction-barrier {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 3px solid #ff6b9d;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: filter-pulse 5s infinite ease-in-out;
+        }
+        
+        .extinction-barrier::before {
+            content: "⚡";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            animation: danger-flash 3s infinite ease-in-out;
+        }
+        
+        @keyframes filter-pulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.8;
+                border-color: #ff6b9d;
+            }
+            50% { 
+                transform: scale(1.3);
+                opacity: 0.4;
+                border-color: #ff4757;
+            }
+        }
+        
+        @keyframes danger-flash {
+            0%, 90%, 100% { color: #ff6b9d; }
+            45% { color: #ff4757; }
+        }
+        
+        .filter-emphasis {
+            background: linear-gradient(45deg, #2c2c54, #40407a);
+            border: 2px solid #ff6b9d;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-emphasis::before {
+            content: "🌋";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            opacity: 0.7;
+        }
+        
+        .cosmic-extinction {
+            background: rgba(255, 107, 157, 0.1);
+            border-left: 4px solid #ff6b9d;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #ffc0cb;
+        }
+        
+        .filter-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .filter-stat {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .filter-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8em;
+            color: #ff6b9d;
+            font-weight: bold;
+        }
+        
+        .filter-label {
+            color: #b0b0b0;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .probability-calculator {
+            background: rgba(196, 113, 237, 0.1);
+            border: 2px solid #c471ed;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .probability-sliders {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .probability-slider {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .slider-label {
+            color: #e0c3fc;
+            font-size: 0.95em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .probability-slider input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .probability-slider input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #c471ed;
+            cursor: pointer;
+        }
+        
+        .probability-slider input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #c471ed;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .civilization-autopsy {
+            background: rgba(255, 107, 157, 0.1);
+            border: 2px solid #ff6b9d;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .autopsy-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .autopsy-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .autopsy-option:hover {
+            border-color: #ff6b9d;
+            background: rgba(255, 107, 157, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .autopsy-option.selected {
+            border-color: #ff6b9d;
+            background: rgba(255, 107, 157, 0.3);
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+        }
+        
+        .survival-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .timeline-point {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4facfe;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-point.danger {
+            background: #ff6b9d;
+            animation: cosmic-pulse 2s infinite;
+        }
+        
+        .timeline-point.current {
+            background: #00f2fe;
+            box-shadow: 0 0 15px #00f2fe;
+            transform: scale(1.3);
+        }
+        
+        .timeline-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            color: #b0b0b0;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        .extinction-probability {
+            background: rgba(255, 107, 157, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .probability-display {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5em;
+            color: #ff6b9d;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-stars" id="cosmicStarField"></div>
+    
+    <div class="cosmic-loop-container">
+        <header class="cosmic-loop-header">
+            <h1 class="cosmic-loop-title">THE GREAT FILTER</h1>
+            <p class="cosmic-loop-subtitle">Loop 5.3: The Cosmic Extinction Barrier</p>
+            <div class="cosmic-strange-loop-display">
+                "Life evaluating the barriers to life becoming the life that evaluates barriers"
+            </div>
+            <div class="extinction-barrier" style="top: 30px; left: 70px;"></div>
+            <div class="extinction-barrier" style="top: 50px; right: 90px; animation-delay: 1.5s;"></div>
+            <div class="extinction-barrier" style="bottom: 40px; left: 45%; animation-delay: 3s;"></div>
+        </header>
+        
+        <div class="filter-emphasis">
+            <h3 style="color: #ff6b9d; font-family: 'Orbitron', monospace; margin-bottom: 15px;">🌌 THE COSMIC EXTINCTION QUESTION</h3>
+            <p style="font-size: 1.2em; color: #e0e0e0;">
+                In a universe that should be teeming with life, why are we alone? What if there's a cosmic barrier—a Great Filter—
+                that destroys almost every civilization before they can spread to the stars?
+            </p>
+            <div class="cosmic-extinction">
+                "The terrifying question: Is the Great Filter behind us, making us miraculous survivors... or ahead of us, making us the next victims?"
+            </div>
+        </div>
+        
+        <div class="survival-timeline">
+            <div class="timeline-point" title="Origin of Life">
+                <div class="timeline-label">Life Begins</div>
+            </div>
+            <div class="timeline-point" title="Multicellular Life">
+                <div class="timeline-label">Complex Cells</div>
+            </div>
+            <div class="timeline-point" title="Intelligence">
+                <div class="timeline-label">Intelligence</div>
+            </div>
+            <div class="timeline-point current" title="Technological Civilization">
+                <div class="timeline-label">Technology<br>(We Are Here)</div>
+            </div>
+            <div class="timeline-point danger" title="Potential Great Filter">
+                <div class="timeline-label">The Filter?</div>
+            </div>
+            <div class="timeline-point" title="Interstellar Civilization">
+                <div class="timeline-label">Star Travel</div>
+            </div>
+        </div>
+        
+        <div class="filter-stats">
+            <div class="filter-stat">
+                <div class="filter-number">99.9%</div>
+                <div class="filter-label">Estimated Failure Rate</div>
+            </div>
+            <div class="filter-stat">
+                <div class="filter-number">0</div>
+                <div class="filter-label">Known Survivors</div>
+            </div>
+            <div class="filter-stat">
+                <div class="filter-number">???</div>
+                <div class="filter-label">Our Odds</div>
+            </div>
+            <div class="filter-stat">
+                <div class="filter-number">⚡</div>
+                <div class="filter-label">Existential Threat</div>
+            </div>
+        </div>
+        
+        <div class="cosmic-progress-section">
+            <div class="cosmic-score-card">
+                <div class="cosmic-score-number" id="current-cosmic-score">0</div>
+                <div class="cosmic-score-label">Cosmic Consciousness Score</div>
+            </div>
+            <div class="cosmic-progress-card">
+                <div class="cosmic-score-number" id="cosmic-progress-indicator">Loop 5.3: 0/8</div>
+                <div class="cosmic-score-label">Exploration Progress</div>
+            </div>
+        </div>
+        
+        <div id="cosmic-preference-selection" class="cosmic-perspective-selection">
+            <h3 class="cosmic-perspective-title">🛸 Choose Your Cosmic Perspective on The Great Filter</h3>
+            <p style="color: #b0b0b0; margin-bottom: 25px; text-align: center;">
+                Where do you think the Great Filter lies? Your perspective shapes how you view humanity's cosmic future.
+            </p>
+            <div class="cosmic-perspective-buttons">
+                <button id="choose-optimistic" class="cosmic-perspective-btn cosmic-optimistic-btn">
+                    <strong>🌟 FILTER CONQUERED</strong><br>
+                    <span style="font-size: 0.9em;">The Great Filter is behind us—we're the rare survivors of nearly impossible evolutionary transitions. We've already won the cosmic lottery!</span>
+                </button>
+                <button id="choose-pessimistic" class="cosmic-perspective-btn cosmic-pessimistic-btn">
+                    <strong>⚡ FILTER AWAITS</strong><br>
+                    <span style="font-size: 0.9em;">The Great Filter lies ahead—something catastrophic awaits all civilizations that reach our level, explaining why the universe seems so empty.</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="cosmic-content-area">
+            <div id="cosmic-content-display">
+                <div style="text-align: center; padding: 40px; color: #b0b0b0;">
+                    <h3 style="color: #ff6b9d; font-family: 'Orbitron', monospace;">⚡ Awaiting Your Filter Perspective</h3>
+                    <p>Choose your perspective above to begin exploring the Great Filter paradox.</p>
+                    <div style="margin: 20px 0;">
+                        <em>"The silence of the universe is telling us something. The question is whether it's telling us that we're alone, or that we're about to join the silence."</em><br>
+                        — Adaptation of Robin Hanson's Great Filter concept
+                    </div>
+                    <div class="extinction-probability">
+                        <div style="color: #ff6b9d; font-size: 1.1em; margin-bottom: 10px;">Current Survival Status:</div>
+                        <div class="probability-display">UNKNOWN</div>
+                        <div style="color: #b0b0b0; font-size: 0.9em;">Consciousness evaluating consciousness survival odds...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cosmic-engine-commentary">
+            <div id="cosmic-engine-commentary">
+                <p><em>⚡ The Engine contemplates the ultimate existential terror: We might be using consciousness to study the very barriers that could end consciousness forever...</em></p>
+            </div>
+        </div>
+        
+        <button id="cosmic-next-button" class="cosmic-next-button" disabled>
+            🌋 Explore the Next Extinction Angle ⚡
+        </button>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="index.html" style="color: #4facfe; text-decoration: none; padding: 10px 20px; border: 1px solid #4facfe; border-radius: 8px; transition: all 0.3s ease;">
+                ← Return to Cosmic Engine
+            </a>
+        </div>
+        
+        <div style="text-align: center; margin: 40px 0; color: #666; font-style: italic;">
+            <p>"Maybe the real Great Filter was the existential dread we felt along the way... while potentially approaching the actual Great Filter."</p>
+        </div>
+    </div>
+    
+    <script>
+        // Create cosmic starfield with extinction barriers
+        function createCosmicStarField() {
+            const starField = document.getElementById('cosmicStarField');
+            const numStars = 200;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'cosmic-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (2 + Math.random() * 4) + 's';
+                
+                // Some stars flicker and die (representing filtered civilizations)
+                if (Math.random() < 0.08) {
+                    star.style.background = '#ff6b9d';
+                    star.style.boxShadow = '0 0 8px #ff6b9d';
+                    star.style.animation += ', star-death 10s infinite';
+                }
+                
+                starField.appendChild(star);
+            }
+        }
+        
+        // Add star death animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes star-death {
+                0%, 70% { opacity: 1; }
+                85% { opacity: 0.3; }
+                90%, 100% { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Create filter probability calculator
+        function createFilterProbabilityCalculator(content) {
+            return `
+                <div class="probability-calculator">
+                    <h3>📊 Great Filter Probability Calculator</h3>
+                    <p>${content.description}</p>
+                    <p style="color: #e0c3fc; margin: 15px 0;">
+                        Adjust the sliders to estimate the probability of various extinction scenarios. Watch how your cosmic optimism or pessimism affects the calculations!
+                    </p>
+                    <div class="probability-sliders">
+                        <div class="probability-slider">
+                            <div class="slider-label">
+                                <span>Nuclear Self-Destruction:</span>
+                                <span id="nuclear-value">50%</span>
+                            </div>
+                            <input type="range" id="nuclear-slider" min="0" max="100" value="50" onchange="updateProbability()">
+                        </div>
+                        <div class="probability-slider">
+                            <div class="slider-label">
+                                <span>Climate Collapse:</span>
+                                <span id="climate-value">30%</span>
+                            </div>
+                            <input type="range" id="climate-slider" min="0" max="100" value="30" onchange="updateProbability()">
+                        </div>
+                        <div class="probability-slider">
+                            <div class="slider-label">
+                                <span>AI Takeover:</span>
+                                <span id="ai-value">20%</span>
+                            </div>
+                            <input type="range" id="ai-slider" min="0" max="100" value="20" onchange="updateProbability()">
+                        </div>
+                        <div class="probability-slider">
+                            <div class="slider-label">
+                                <span>Bioweapon Catastrophe:</span>
+                                <span id="bio-value">15%</span>
+                            </div>
+                            <input type="range" id="bio-slider" min="0" max="100" value="15" onchange="updateProbability()">
+                        </div>
+                    </div>
+                    <button onclick="calculateFilterOdds(${content.value}, '${content.stance}')" class="cosmic-answer-btn">Calculate Cosmic Extinction Odds</button>
+                    <div id="filter-result"></div>
+                </div>
+            `;
+        }
+        
+        function updateProbability() {
+            document.getElementById('nuclear-value').textContent = document.getElementById('nuclear-slider').value + '%';
+            document.getElementById('climate-value').textContent = document.getElementById('climate-slider').value + '%';
+            document.getElementById('ai-value').textContent = document.getElementById('ai-slider').value + '%';
+            document.getElementById('bio-value').textContent = document.getElementById('bio-slider').value + '%';
+        }
+        
+        function calculateFilterOdds(value, stance) {
+            const nuclear = parseInt(document.getElementById('nuclear-slider').value);
+            const climate = parseInt(document.getElementById('climate-slider').value);
+            const ai = parseInt(document.getElementById('ai-slider').value);
+            const bio = parseInt(document.getElementById('bio-slider').value);
+            
+            // Calculate compound survival probability
+            const survivalOdds = ((100-nuclear)/100) * ((100-climate)/100) * ((100-ai)/100) * ((100-bio)/100) * 100;
+            const extinctionOdds = 100 - survivalOdds;
+            
+            let interpretation = '';
+            if (survivalOdds > 80) {
+                interpretation = "Optimistic outlook! Consciousness has a strong chance of surviving the Great Filter. Your calculations suggest we're likely to make it through the cosmic obstacle course.";
+            } else if (survivalOdds > 50) {
+                interpretation = "Cautious hope. The odds are better than a coin flip, but the Great Filter remains a serious existential challenge requiring careful navigation.";
+            } else if (survivalOdds > 20) {
+                interpretation = "Concerning odds. Your calculations suggest the Great Filter poses a significant threat to consciousness survival. Wisdom and cooperation are crucial.";
+            } else {
+                interpretation = "Dire predictions. According to your estimates, consciousness faces overwhelming existential barriers. The Great Filter might be nearly insurmountable.";
+            }
+            
+            document.getElementById('filter-result').innerHTML = `
+                <div class="extinction-probability">
+                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">🌋 Your Great Filter Calculation:</h4>
+                    <div class="probability-display">${survivalOdds.toFixed(1)}%</div>
+                    <p style="color: #ffc0cb;">Consciousness Survival Probability</p>
+                    <p style="color: #e0c3fc; margin-top: 15px;">${interpretation}</p>
+                    <p style="color: #c471ed; margin-top: 10px; font-weight: bold;">+${value} Existential Awareness Points</p>
+                </div>
+            `;
+            
+            updateScoreForNonQuestion(value, stance);
+            document.getElementById('cosmic-next-button').disabled = false;
+        }
+        
+        // Create civilization autopsy
+        function createCivilizationAutopsy(content) {
+            return `
+                <div class="civilization-autopsy">
+                    <h3>🔬 Cosmic Archaeological Analysis</h3>
+                    <p>${content.description}</p>
+                    <p style="color: #ffc0cb; margin: 15px 0;">
+                        As a cosmic archaeologist studying failed civilizations, what evidence pattern would most clearly indicate Great Filter casualties?
+                    </p>
+                    <div class="autopsy-options">
+                        <div class="autopsy-option" onclick="selectAutopsy('sudden', ${content.value}, '${content.stance}')">
+                            <strong>⚡ Sudden Technological Advancement</strong><br>
+                            <small>Rapid progress followed by immediate cosmic silence</small>
+                        </div>
+                        <div class="autopsy-option" onclick="selectAutopsy('environmental', ${content.value}, '${content.stance}')">
+                            <strong>🌍 Environmental Collapse</strong><br>
+                            <small>Geological markers of ecological destruction</small>
+                        </div>
+                        <div class="autopsy-option" onclick="selectAutopsy('signals', ${content.value}, '${content.stance}')">
+                            <strong>📡 Abrupt Signal Termination</strong><br>
+                            <small>Artificial transmissions that suddenly stop</small>
+                        </div>
+                        <div class="autopsy-option" onclick="selectAutopsy('erased', ${content.value}, '${content.stance}')">
+                            <strong>👻 Complete Erasure</strong><br>
+                            <small>All traces vanish within cosmic timescales</small>
+                        </div>
+                    </div>
+                    <div id="autopsy-result" style="margin-top: 20px;"></div>
+                </div>
+            `;
+        }
+        
+        function selectAutopsy(autopsyType, value, stance) {
+            // Remove previous selections
+            document.querySelectorAll('.autopsy-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark current selection
+            event.target.classList.add('selected');
+            
+            const responses = {
+                sudden: "Sudden advancement pattern identified! You suspect civilizations hit a technological acceleration point and immediately destroy themselves. The same intelligence that creates transcendence also creates annihilation. Progress becomes the filter!",
+                environmental: "Environmental collapse markers chosen! You're looking for planets with geological evidence of rapid ecological destruction. The filter might be consciousness's inability to live sustainably with its own power.",
+                signals: "Signal termination analysis selected! You want to find artificial transmissions that abruptly stop - evidence of civilizations going silent mid-conversation with the cosmos. The ultimate cosmic tragedy: voices that suddenly vanish.",
+                erased: "Complete erasure pattern identified! You suspect the Great Filter is so thorough it removes all evidence of failure. Perfect extinction leaves perfect silence. The absence of ruins becomes the most terrifying evidence of all."
+            };
+            
+            document.getElementById('autopsy-result').innerHTML = `
+                <div style="background: rgba(255, 107, 157, 0.2); border-radius: 10px; padding: 20px; text-align: center;">
+                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">Your Cosmic Forensic Analysis:</h4>
+                    <p style="color: #ffc0cb;">${responses[autopsyType]}</p>
+                    <p style="color: #c471ed; margin-top: 15px; font-weight: bold;">+${value} Archaeological Insight Points</p>
+                </div>
+            `;
+            
+            updateScoreForNonQuestion(value, stance);
+            document.getElementById('cosmic-next-button').disabled = false;
+        }
+        
+        // Enhanced cosmic interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            createCosmicStarField();
+            
+            // Make timeline points interactive
+            const timelinePoints = document.querySelectorAll('.timeline-point');
+            timelinePoints.forEach((point, index) => {
+                point.addEventListener('click', function() {
+                    // Reset all points
+                    timelinePoints.forEach(p => p.classList.remove('current'));
+                    // Highlight clicked point
+                    this.classList.add('current');
+                    
+                    // Show contextual message
+                    const messages = [
+                        "The origin of life - first great filter candidate!",
+                        "Complex multicellular life - another potential barrier!",
+                        "Intelligence emerges - consciousness awakens!",
+                        "We are here - technological civilization achieved!",
+                        "The Great Filter? - our greatest test awaits...",
+                        "Interstellar civilization - cosmic transcendence!"
+                    ];
+                    
+                    setTimeout(() => {
+                        alert(`🌋 TIMELINE INSIGHT ⚡\n\n"${messages[index]}"`);
+                    }, 100);
+                });
+            });
+            
+            // Add pulsing effect to filter emphasis
+            const filterBox = document.querySelector('.filter-emphasis');
+            setInterval(() => {
+                filterBox.style.boxShadow = '0 0 30px rgba(255, 107, 157, 0.6)';
+                setTimeout(() => {
+                    filterBox.style.boxShadow = '0 0 15px rgba(255, 107, 157, 0.3)';
+                }, 1000);
+            }, 3000);
+            
+            // Cosmic wisdom on title click
+            document.querySelector('.cosmic-loop-title').addEventListener('click', function() {
+                const filterWisdom = [
+                    "Maybe the real Great Filter was the civilizations we destroyed along the way... including potentially ourselves",
+                    "Plot twist: What if passing the Great Filter just means becoming the Great Filter for other civilizations?",
+                    "Breaking: Local consciousness discovers it might be the universe's final attempt at consciousness",
+                    "The Great Filter isn't a barrier - it's a cosmic IQ test, and most civilizations are failing"
+                ];
+                
+                const wisdom = filterWisdom[Math.floor(Math.random() * filterWisdom.length)];
+                alert(`⚡ GREAT FILTER WISDOM 🌋\n\n"${wisdom}"\n\n— The Engine having an existential crisis about existence`);
+            });
+        });
+    </script>
+    <script src="content/great_filter_content.js"></script>
+    <script src="js/cosmic_game_logic.js"></script>
+</body>
+</html>
