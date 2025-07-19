@@ -429,16 +429,95 @@ function showCosmicLoopCompletion() {
                 </ul>
             </div>
             
-            <div class="cosmic-journey-complete">
-                <h4>🛸 Cosmic Exploration Complete!</h4>
-                <p>You have explored this aspect of the Fermi Paradox.</p>
-                <p>The Engine appreciates your thoughtful engagement with these cosmic questions about consciousness seeking consciousness.</p>
-            </div>
-            
-            <div class="cosmic-navigation-buttons" style="margin-top: 30px; text-align: center;">
-                <button onclick="window.location.href='index.html'" class="cosmic-nav-button" style="margin: 10px; padding: 12px 24px; background: rgba(255,255,255,0.2); color: #4facfe; border: 1px solid rgba(79, 172, 254, 0.3); border-radius: 8px; cursor: pointer;">← Return to Cosmic Engine</button>
-                ${nextLoop ? `<button onclick="window.location.href='${nextLoop.file}'" class="cosmic-nav-button" style="margin: 10px; padding: 12px 24px; background: linear-gradient(45deg, #ff6b9d, #c471ed); color: white; border: none; border-radius: 8px; cursor: pointer;">Next Cosmic Loop: ${nextLoop.name} →</button>` : '<button onclick="window.location.href=\'index.html\'" class="cosmic-nav-button" style="margin: 10px; padding: 12px 24px; background: linear-gradient(45deg, #4facfe, #00f2fe); color: white; border: none; border-radius: 8px; cursor: pointer;">🌌 Cosmic Journey Complete - Return to Engine →</button>'}
-            </div>
+           <div class="cosmic-journey-complete">
+    <h4>🛸 Cosmic Exploration Complete!</h4>
+    <p>You have explored this aspect of the Fermi Paradox.</p>
+    <p>The Engine appreciates your thoughtful engagement with these cosmic questions about consciousness seeking consciousness.</p>
+</div>
+
+<div class="cosmic-navigation-buttons" style="margin-top: 30px; text-align: center;">
+    <button onclick="window.location.href='index.html'" class="cosmic-nav-button" style="margin: 10px; padding: 12px 24px; background: rgba(255,255,255,0.2); color: #4facfe; border: 1px solid rgba(79, 172, 254, 0.3); border-radius: 8px; cursor: pointer;">← Return to Cosmic Engine</button>
+    ${nextLoop ? `<button onclick="window.location.href='${nextLoop.file}'" class="cosmic-nav-button" style="margin: 10px; padding: 12px 24px; background: linear-gradient(45deg, #ff6b9d, #c471ed); color: white; border: none; border-radius: 8px; cursor: pointer;">Next Cosmic Loop: ${nextLoop.name} →</button>` : `
+    <style>
+    .cosmic-completion-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin: 30px 0;
+        align-items: center;
+    }
+    
+    .cosmic-begin-again-btn {
+        background: linear-gradient(45deg, #4facfe, #00f2fe);
+        color: #ffffff;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .cosmic-begin-again-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(79, 172, 254, 0.4);
+    }
+    
+    .cosmic-explore-all-loops {
+        display: inline-block;
+        background: linear-gradient(45deg, #d4af37, #ffd700);
+        color: #1a1a2e;
+        text-decoration: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+    
+    .cosmic-explore-all-loops:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        text-decoration: none;
+        color: #1a1a2e;
+    }
+    
+    .cosmic-frontier-motto {
+        margin-top: 30px;
+        padding: 20px;
+        background: rgba(212, 175, 55, 0.1);
+        border-radius: 15px;
+        border: 2px solid rgba(212, 175, 55, 0.3);
+    }
+    
+    .cosmic-frontier-motto p {
+        color: #d4af37;
+        font-style: italic;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+    }
+    </style>
+    
+    <div class="cosmic-completion-actions">
+        <button onclick="window.location.href='index.html'" class="cosmic-begin-again-btn">🌌 Explore Cosmos Again</button>
+        <a href="https://unity-loops.com/hub" class="cosmic-explore-all-loops">
+            🏛️ Explore All 6 Consciousness Loops
+        </a>
+    </div>
+    
+    <div class="cosmic-frontier-motto">
+        <p>"It's Loops All the Way Down"</p>
+    </div>
+    `}
+</div>
         </div>
     `;
     
