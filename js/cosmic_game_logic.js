@@ -1,5 +1,6 @@
 // 🌌 COSMIC LOOPS: The Fermi Paradox Engine Game Logic 🛸
 // "Where is everybody who might be asking 'Where is everybody?'"
+// FIXED: FRONTIER hub navigation only appears after final loop (Observer Effect)
 
 const cosmicLoopOrder = [
     { name: "The Great Silence", file: "great_silence.html", unlockScore: 0 },
@@ -416,6 +417,10 @@ function showCosmicLoopCompletion() {
     const currentLoopName = getCurrentCosmicLoopName() + ': ' + getCurrentCosmicLoopTitle();
     const nextLoop = getNextCosmicLoop();
     
+    // FIXED: Check if this is actually the final loop before showing FRONTIER navigation
+    const currentTitle = document.title.toLowerCase();
+    const isTrueFinalLoop = currentTitle.includes('observer');
+    
     contentDisplay.innerHTML = `
         <div class="cosmic-completion-content">
             <h3>🌌 Cosmic Loop Complete: ${currentLoopName}</h3>
@@ -437,7 +442,8 @@ function showCosmicLoopCompletion() {
 
 <div class="cosmic-navigation-buttons" style="margin-top: 30px; text-align: center;">
     <button onclick="window.location.href='index.html'" class="cosmic-nav-button" style="margin: 10px; padding: 12px 24px; background: rgba(255,255,255,0.2); color: #4facfe; border: 1px solid rgba(79, 172, 254, 0.3); border-radius: 8px; cursor: pointer;">← Return to Cosmic Engine</button>
-    ${nextLoop ? `<button onclick="window.location.href='${nextLoop.file}'" class="cosmic-nav-button" style="margin: 10px; padding: 12px 24px; background: linear-gradient(45deg, #ff6b9d, #c471ed); color: white; border: none; border-radius: 8px; cursor: pointer;">Next Cosmic Loop: ${nextLoop.name} →</button>` : `
+    ${nextLoop ? `<button onclick="window.location.href='${nextLoop.file}'" class="cosmic-nav-button" style="margin: 10px; padding: 12px 24px; background: linear-gradient(45deg, #ff6b9d, #c471ed); color: white; border: none; border-radius: 8px; cursor: pointer;">Next Cosmic Loop: ${nextLoop.name} →</button>` : 
+    (isTrueFinalLoop ? `
     <style>
     .cosmic-completion-actions {
         display: flex;
@@ -514,9 +520,13 @@ function showCosmicLoopCompletion() {
     </div>
     
     <div class="cosmic-frontier-motto">
-        <p>"It's Loops All the Way Down"</p>
+        <p>"It\'s Loops All the Way Down"</p>
     </div>
-    `}
+    ` : `
+    <div class="cosmic-completion-actions">
+        <button onclick="window.location.href='index.html'" class="cosmic-begin-again-btn">🌌 Explore This Loop Again</button>
+    </div>
+    `)}
 </div>
         </div>
     `;
